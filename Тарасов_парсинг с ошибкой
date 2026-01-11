@@ -1,0 +1,194 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Arneem/My-GIT/blob/main/%D0%A2%D0%B0%D1%80%D0%B0%D1%81%D0%BE%D0%B2_%D0%BF%D0%B0%D1%80%D1%81%D0%B8%D0%BD%D0%B3%20%D1%81%20%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%BE%D0%B9\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 30,
+      "metadata": {
+        "id": "PGvNIt7AYYz3"
+      },
+      "outputs": [],
+      "source": [
+        "import requests\n",
+        "from bs4 import BeautifulSoup\n",
+        "# Импортируем библиотеки для запросов и обработки html"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 31,
+      "metadata": {
+        "id": "vhrZ-VbRYc0Z"
+      },
+      "outputs": [],
+      "source": [
+        "headers = {\"User-Agent\" : \"Mozilla/5.0 (Windows NT 10.0; Win64; x64)\"}\n",
+        "\n",
+        "headers = {\n",
+        "  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64)\",\n",
+        "  \"Accept\": \"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\",\n",
+        "  \"Accept-Language\": \"ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7\",\n",
+        "  \"Accept-Encoding\": \"gzip, deflate, br\",\n",
+        "}"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 32,
+      "metadata": {
+        "id": "2VLmVRkrZxc7"
+      },
+      "outputs": [],
+      "source": [
+        "class TAG:\n",
+        "    def __init__(self, tag, className):\n",
+        "        self.tag = tag\n",
+        "        self.className = className\n",
+        "\n",
+        "website1 = {\n",
+        "\t'vusName': '№1 Орловский государственный университет имени И.С. Тургенева',\n",
+        "\t'serverName': 'https://oreluniver.ru',\n",
+        "\t'serverShortName': 'oreluniver.ru',\n",
+        "\t'site_news': ['https://oreluniver.ru/media/news/'],\n",
+        "\t'block_news': TAG('div', 'news-content'),\n",
+        "\t'block_date': TAG('p', ' dateNews'),\n",
+        "\t'block_link': TAG('div', 'details col-md-10 col-sm-9 col-xs-12'),\n",
+        "\t'block_text_news': TAG('h3', 'title'),\n",
+        "  # БЛОК где лежит HTML код всей новости\n",
+        "\t'block_full_news': TAG('div', 'news-wrapper col-md-8 col-sm-7'),\n",
+        "}\n",
+        "\n",
+        "website2 = {\n",
+        "\t'vusName': '№2 Филиал ВЭПИ в г. Орел',\n",
+        "\t'serverName': 'https://orel.vepi.ru/',\n",
+        "\t'serverShortName': 'orel.vepi.ru',\n",
+        "\t'site_news': ['https://orel.vepi.ru/lifenews/', 'https://orel.vepi.ru/lifenews/page/2/'],\n",
+        "\t'block_news': TAG('div', 'col-md-10 whiteback offset-md-1  mt-30'),\n",
+        "\t'block_date': TAG('div', 'merodate'),\n",
+        "\t'block_link': TAG('div', 'col-md-3 mt-20 meropriya'),\n",
+        "\t'block_text_news': TAG('span', 'mt-10'),\n",
+        "  # БЛОК где лежит HTML код всей новости\n",
+        "\t'block_full_news': TAG('div', 'row studso '),\n",
+        "}\n",
+        "\n",
+        "website3 = {\n",
+        "  'vusName': '№3 ОРЛОВСКИЙ ГОСУДАРСТВЕННЫЙ ИНСТИТУТ КУЛЬТУРЫ', ##\n",
+        "\t'serverName': 'https://ogik.ru/',\n",
+        "\t'serverShortName': 'ogik.ru',\n",
+        "\t'site_news': ['https://ogik.ru/press-center/news/','https://ogik.ru/press-center/news/?PAGEN_1=2','https://ogik.ru/press-center/news/?PAGEN_1=3'],\n",
+        "\t'block_news': TAG('section', 'sf-iblock-card-area sf-viewbox-wrap  mb-4 lazyloaded'),\n",
+        "\t'block_date': TAG('p', 't--1 c-text-secondary mb-2 d-inline-block mr-3'),\n",
+        "\t'block_link': TAG('p', 't-1 mb-2 sf-title t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition'), #news-item__wrapper col-12 col-sm-6 col-lg-4\n",
+        "\t'block_text_news': TAG('p', 't-1 mb-2 sf-title t-title с-text-primary l-inherit l-hover-primary l-hover-underline-none transition'),\n",
+        "  # БЛОК где лежит HTML код всей новости\n",
+        "\t'block_full_news': TAG('div', 'sf-viewbox position-relative'),\n",
+        "}\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 33,
+      "metadata": {
+        "id": "3TholBYwZ7ln"
+      },
+      "outputs": [],
+      "source": [
+        "# массив коллекций , нужно продолжить\n",
+        "\n",
+        "websites = [website3]\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "ggJpKIJk2NKp"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 34,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 228
+        },
+        "id": "dFpjqj2AZ9Fi",
+        "outputId": "9b84a4f7-926f-4370-fb5e-45cbd65948e8"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Исследуем новости №3 ОРЛОВСКИЙ ГОСУДАРСТВЕННЫЙ ИНСТИТУТ КУЛЬТУРЫ\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "AttributeError",
+          "evalue": "'NoneType' object has no attribute 'find_all'",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)",
+            "\u001b[0;32m/tmp/ipython-input-4200546777.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      7\u001b[0m   \u001b[0;34m'''Сначала найдем блок новостей'''\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      8\u001b[0m   \u001b[0mblock_news\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0msoup\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mfind\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mwebsite\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'block_news'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mtag\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m{\u001b[0m\u001b[0;34m'class'\u001b[0m \u001b[0;34m:\u001b[0m \u001b[0mwebsite\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'block_news'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mclassName\u001b[0m\u001b[0;34m}\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 9\u001b[0;31m   \u001b[0mheaders_news\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mblock_news\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mfind_all\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mwebsite\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'block_link'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mtag\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m{\u001b[0m\u001b[0;34m'class'\u001b[0m \u001b[0;34m:\u001b[0m \u001b[0mwebsite\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'block_link'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mclassName\u001b[0m\u001b[0;34m}\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     10\u001b[0m   \u001b[0mtext_news\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mblock_news\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mfind_all\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mwebsite\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'block_text_news'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mtag\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m{\u001b[0m\u001b[0;34m'class'\u001b[0m \u001b[0;34m:\u001b[0m \u001b[0mwebsite\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'block_text_news'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mclassName\u001b[0m\u001b[0;34m}\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     11\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mAttributeError\u001b[0m: 'NoneType' object has no attribute 'find_all'"
+          ]
+        }
+      ],
+      "source": [
+        "for website in websites:\n",
+        "  print ( 'Исследуем новости', website['vusName'] )\n",
+        "  # Делаем запрос\n",
+        "  # doc = requests.get(website['site_news'][0], headers = headers)\n",
+        "  doc = requests.get(website['site_news'][0], headers=headers, timeout=30)\n",
+        "  soup = BeautifulSoup(doc.text, 'html.parser')\n",
+        "  '''Сначала найдем блок новостей'''\n",
+        "  block_news = soup.find(website['block_news'].tag, {'class' : website['block_news'].className})\n",
+        "  headers_news = block_news.find_all(website['block_link'].tag, {'class' : website['block_link'].className})\n",
+        "  text_news = block_news.find_all(website['block_text_news'].tag, {'class' : website['block_text_news'].className})\n",
+        "\n",
+        "  for i in range(len(headers_news)):\n",
+        "    print ( i+1, ')', headers_news[i].text.strip() )\n",
+        "    print ( '\\t', text_news[i].text.strip() )\n",
+        "    link = headers_news[i].find('a')['href']\n",
+        "    if not( (website['serverShortName']) in link ):\n",
+        "      link = website['serverName'] + link\n",
+        "    print ( '\\t', link )\n",
+        "    if ( \"День\" ) in headers_news[i].text.strip() + text_news[i].text.strip():\n",
+        "      #print ( '\\t', date)\n",
+        "      print ( '\\t', headers_news[i].text.strip() )\n",
+        "      print ( '\\t', link )\n",
+        "      #doc2 = requests.get(link, headers = headers)\n",
+        "      #soup2 = BeautifulSoup(doc2.text, 'html.parser')\n",
+        "      #block_full_news = soup2.find(website['block_full_news'].tag, {'class' : website['block_full_news'].className})\n",
+        "      #print ( '\\t\\t', block_full_news.prettify().strip()[:500] )"
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
